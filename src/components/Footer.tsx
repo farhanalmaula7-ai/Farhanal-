@@ -12,20 +12,24 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="py-8 border-t border-border bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="mt-10">
+      {/* Bagian Merah */}
+      <div className="bg-red-500 text-white py-6">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          
+          {/* Copyright */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2 text-muted-foreground"
+            className="flex items-center gap-2"
           >
             <span>© {currentYear} Made with</span>
-            <Heart className="h-4 w-4 text-destructive fill-destructive" />
-            <span>by Developer</span>
+            <Heart className="h-4 w-4 text-white fill-white" />
+            <span>by Farhan Almaula</span>
           </motion.div>
 
+          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -36,7 +40,7 @@ export default function Footer() {
               <a
                 key={social.label}
                 href={social.href}
-                className="p-2 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                className="p-2 rounded-full hover:bg-red-600 transition-colors text-white hover:text-gray-200"
                 aria-label={social.label}
               >
                 <social.icon className="h-5 w-5" />
@@ -44,6 +48,11 @@ export default function Footer() {
             ))}
           </motion.div>
         </div>
+      </div>
+
+      {/* Bagian Putih */}
+      <div className="bg-white py-3 text-center text-sm text-gray-600 border-t border-gray-200">
+        <span>Terima kasih sudah mengunjungi website saya 🙌</span>
       </div>
     </footer>
   );
