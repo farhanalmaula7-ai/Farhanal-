@@ -40,22 +40,26 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-strong shadow-card' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-white ${
+        isScrolled
+          ? 'bg-red-600 shadow-lg'
+          : 'bg-red-500'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
+          
+          {/* Logo */}
           <motion.a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="font-display text-xl md:text-2xl font-bold text-gradient cursor-pointer"
+            className="text-xl md:text-2xl font-bold cursor-pointer text-white"
             whileHover={{ scale: 1.05 }}
           >
-            &lt;Dev /&gt;
+            Almaula
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -68,17 +72,19 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
+                className="text-white hover:text-gray-200 transition-colors font-medium cursor-pointer"
                 whileHover={{ y: -2 }}
               >
                 {item.label}
               </motion.a>
             ))}
+
+            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full text-white hover:bg-red-700"
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
@@ -110,16 +116,22 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full text-white hover:bg-red-700"
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
+
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white hover:bg-red-700"
             >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </div>
@@ -132,7 +144,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-strong border-t border-border"
+            className="md:hidden bg-red-600 border-t border-red-400"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {navItems.map((item) => (
@@ -143,7 +155,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                     e.preventDefault();
                     scrollToSection(item.href);
                   }}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                  className="text-white hover:text-gray-200 transition-colors font-medium py-2"
                 >
                   {item.label}
                 </a>
